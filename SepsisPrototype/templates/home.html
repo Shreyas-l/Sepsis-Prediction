@@ -1,0 +1,106 @@
+
+
+ <html>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<title>Sepsis</title>
+<style>
+
+main{
+  background-image: url({{ url_for('static', filename='try2.jpg')}});
+  position: relative;
+  background-attachment: fixed; 
+  background-size: 100% 100%;
+  height: 100%;
+}
+
+nav{
+
+background-color:4d1a00;
+  position: relative;
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 100%;
+
+}
+
+a,p{
+color:white; font-size: 20px; font-weight:bold
+}
+
+a:hover { 
+  color: green;
+}
+
+.jumbotron{
+  
+    filter: background-blur(25px); 
+    background-color: rgba(0 ,0 ,0 ,0.7); 
+}
+
+
+.custom-file-upload {
+    border: 3px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 8%;
+    color: white;
+}
+
+
+</style>
+
+
+
+<body>
+  
+	<nav class="navbar navbar-expand-lg" >
+  <a class="navbar-brand" href="#" style="margin-left:100px">Dr. SepsisAI</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#" style="margin-left:100px;">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url_for('about') }}" style="margin-left:100px">About</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0 searchform" action="https://www.google.com/search" method="get" name="searchform" target="_blank">
+      <input name="sitesearch" type="hidden">
+<input autocomplete="on" class="form-control search" name="q" placeholder="Search" required="required" value = "Solutions" type="search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<main>
+    <div class="container"><br><br><br><br><br>
+    <div class="jumbotron vertical-center">
+
+<div class="">
+  <form method="POST" action="{{ url_for('predict') }}" enctype="multipart/form-data">
+    <div style="margin-left: 34%">
+    <input type="file" class="custom-file-upload" name="testpatient" accept=".csv"/><br><br><br><br>
+    
+    <button style="margin-left: 18%" type="submit" class="predict-button btn btn-success btn-lg">Predict</button>
+  </div>
+  </form>
+</div><br><br><br>
+
+  <div style="margin-left: 43%;color:white;">
+    <p> Sepsis Probability</p> 
+    <p>{% print(prediction) %}</p>
+  </div>
+
+</div>
+</div>
+
+</main>
+</body>
+</html>
+
+
+
